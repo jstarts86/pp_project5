@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
+.menu-card {
+    width: 300px;
+    height: 500px;
+    text-align: center;
+    padding: 20px;
+    font-weight: bold;
+    border: none;
+    margin-bottom: 30px;
+}
+.menu-card:hover {
+    transform: scale(105%);
+}
+
+.S{
+    color: #dfbe6d;
+    background-color:#130d02;
+}
+
+.A{
+    color: #61481C;
+    background-color: #E6B325;
+
+}
+
+.B {
+    color: #3C486B;
+    background-color: #CFD2CF;
+}
+
+.C{
+    color: #FFC26F;
+    background-color: #C38154;
+}
+
+.menu-image{
+    width: 250px;
+    height: 280px;
+    padding: 10px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 18px;
+    overflow: hidden;
+}
