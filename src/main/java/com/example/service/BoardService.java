@@ -3,7 +3,6 @@ package com.example.service;
 import com.example.dao.BoardDao;
 import com.example.dto.BoardDto;
 import com.example.util.FileUpload;
-import com.example.util.BoardUtil;
 import com.example.vo.BoardVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
