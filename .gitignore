@@ -39,3 +39,4 @@ build/
 
 ### CUSTOM ###
 src/main/webapp/WEB-INF/applicationContext.xml
+/src/main/webapp/resources/image/

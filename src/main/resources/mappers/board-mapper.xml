@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!--<beans xmlns="http://www.springframework.org/schema/beans"-->
-<!--       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
-<!--       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">-->
-<!--</beans>-->
-
-<mapper namespace="com.example.board.dao.BoardDao">
+<mapper namespace="Board">
     <insert id="insertBoard">
         insert into MENU (name,type,material,color,description,purchasedDate,price,image)
-        values (#{name}, #{type}, #{material}, #{color}, #{description}, #{purchasedDate}, #{price}, #{image})
+        values
+        (#{name},#{type},#{material},#{color},#{description},#{purchasedDate},#{price},#{image})
     </insert>
     <update id="updateBoard">
-        delete from MENU set name= #{name} , type= #{type}, material= #{material} , color= #{color}, description= #{description} , purchasedDate= #{purchasedDate}, price= #{price}, image= #{image} where id=#{id}
+        update MENU
+        set name=#{name}, type=#{type}, material=#{material}, color=#{color}, description=#{description}, purchasedDate=#{purchasedDate}, price=#{price}, image=#{image}, modDate = CURRENT_TIMESTAMP
+        where id=#{id}
     </update>
+    <delete id="deleteBoard">
+        delete from MENU where id=#{id}
+    </delete>
     <select id="getBoard" resultType="board">
         select * from MENU where id=#{id}
     </select>
     <select id="getBoardList" resultType="board">
         select * from MENU order by id desc
+    </select>
+    <select id="getImage" resultType="String">
+        select image from MENU where id = #{id}
     </select>
 </mapper>
