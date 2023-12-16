@@ -8,11 +8,10 @@
 <mapper namespace="com.example.board.dao.BoardDao">
     <insert id="insertBoard">
         insert into MENU (name,type,material,color,description,purchasedDate,price,image)
-        values (#{name}, #{type}, #{material}, #{color}, #{description}, #{purchasedDate}, #{price}, #{content})
+        values (#{name}, #{type}, #{material}, #{color}, #{description}, #{purchasedDate}, #{price}, #{image})
     </insert>
     <update id="updateBoard">
-        delete from MENU
-        set name= #{name} , type= #{type}, material= #{material} , color= #{color}, description= #{description} , purchasedDate= #{purchasedDate}, price= #{price}, content= #{content} where id=#{id}
+        delete from MENU set name= #{name} , type= #{type}, material= #{material} , color= #{color}, description= #{description} , purchasedDate= #{purchasedDate}, price= #{price}, image= #{image} where id=#{id}
     </update>
     <select id="getBoard" resultType="board">
         select * from MENU where id=#{id}
