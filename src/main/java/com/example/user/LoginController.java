@@ -31,7 +31,7 @@ public class LoginController {
         if(loginvo != null){
             System.out.println("로그인 성공 login success");
             session.setAttribute("login", loginvo);
-            returnURL = "redirect:/posts";
+            returnURL = "redirect:/menu/list";
         } else {
             System.out.println("로그인 실패! login failed");
             returnURL = "redirect:/login/login";
@@ -39,7 +39,6 @@ public class LoginController {
         return returnURL;
     }
 
-    // 로그아웃 하는 부분
     @RequestMapping(value = "/logout")
     public String logout(HttpSession session){
         session.invalidate();
