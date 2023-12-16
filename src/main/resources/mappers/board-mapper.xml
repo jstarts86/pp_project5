@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-</beans>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--<beans xmlns="http://www.springframework.org/schema/beans"-->
+<!--       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">-->
+<!--</beans>-->
+
+<mapper namespace="BoardDao">
+    <insert id="insertBoard">
+        insert into MENU (name,type,material,color,description,purchasedDate,price,image)
+        values (#{name}, #{type}, #{material}, #{color}, #{description}, #{purchasedDate}, #{price}, #{content})
+    </insert>
+    <update id="updateBoard">
+        dete from MENU
+        set name= #{name} , type= #{type}, material= #{material} , color= #{color}, description= #{description} , purchasedDate= #{purchasedDate}, price= #{price}, content= #{content} where id=#{id}
+    </update>
+    <select id="getBoard" resultType="board">
+        select * from MENU where id=#{id}
+    </select>
+    <select id="getBoardList" resultType="board">
+        select * from MENU order by id desc
+    </select>
+</mapper>

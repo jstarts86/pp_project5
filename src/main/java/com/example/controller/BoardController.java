@@ -1,6 +1,7 @@
 package com.example.controller;
 
-import com.example.service.BoardService;
+import com.example.board.model.BoardVo;
+import com.example.board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,50 +22,51 @@ public class BoardController {
 
     @RequestMapping(value = "/menu/list", method = RequestMethod.GET)
     public String MenuList(Model model) {
-        model.addAttribute("list", boardService.infoSimpleList().getSimpleInfoList());
-        return "posts";
+        model.addAttribute("list", boardService.getBoardList());
+        return "board/posts";
     }
 
     @RequestMapping(value = "/menu/add", method = RequestMethod.GET)
     public String addMenu() {
-        return "add";
+        return "board/add";
     }
 
     @RequestMapping(value = "/menu/addok", method = RequestMethod.POST)
-    public String addMenuOk(HttpServletRequest request) {
-        int i = boardService.insertMenu(request);
+    public String addMenuOk(BoardVo vo) {
+        int i = boardService.insertBoard(vo);
         if (i == 0)
             System.out.println("Failed to add data");
         else
             System.out.println("Data successfully added!");
-        return "redirect:list";
+        return "redirect:board/list";
     }
 
     @RequestMapping(value = "/menu/view/{id}", method = RequestMethod.GET)
     public String menuView(Model model,@PathVariable("id") int id) {
-        model.addAttribute("p", boardService.info(id).getInfo());
-        return "view";
+        BoardVo boardVo = boardService.getBoard(id);
+        model.addAttribute("p", boardVo);
+        return "board/view";
     }
 
     @RequestMapping(value = "/menu/edit/{id}", method = RequestMethod.GET)
     public String editMenu(Model model,@PathVariable("id") int id) {
-        model.addAttribute("p", boardService.getVo(id));
-        return "edit";
+        model.addAttribute("p", boardService.getBoard(id));
+        return "board/edit";
     }
 
     @RequestMapping(value = "/menu/editok/{id}", method = RequestMethod.POST)
-    public String editPlayerOk(HttpServletRequest request,@PathVariable("id") String id){
-        int i = boardService.editMenu(request);
+    public String editPlayerOk(BoardVo vo){
+        int i = boardService.updateBoard(vo);
         if (i == 0)
             System.out.println("Failed to edit data");
         else
             System.out.println("Data successfully edited!");
-        return "redirect:../view/" + id;
+        return "redirect:../board/view/";
     }
 
     @RequestMapping(value = "/menu/delete/{id}", method = RequestMethod.GET)
     public String deleteMenu(HttpServletRequest request,@PathVariable("id") int id) {
-        int i = boardService.deleteMenu(request,id);
+        int i = boardService.deleteBoard(id);
         if (i == 0)
             System.out.println("Failed to delete data");
         else

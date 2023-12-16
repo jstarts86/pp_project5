@@ -1,7 +1,7 @@
 package com.example.util;
 
-import com.example.dao.BoardDao;
-import com.example.vo.BoardVo;
+import com.example.board.dao.BoardDao;
+import com.example.board.model.BoardVo;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +48,7 @@ public class FileUpload {
             one.setPrice(Integer.parseInt(multipartRequest.getParameter("price")));
 
             if(id!=null && !id.equals("")){
-                BoardVo vo= boardDao.getMenu(Integer.parseInt(id));
+                BoardVo vo= boardDao.getBoard(Integer.parseInt(id));
                 String oldfilename=vo.getImage();
                 if(filename!=null && oldfilename!=null)
                     FileUpload.deleteFile(request,oldfilename);
